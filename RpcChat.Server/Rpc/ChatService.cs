@@ -18,6 +18,9 @@ namespace RpcChat.Server.Rpc {
             IServerStreamWriter<GetMessagesResponse> responseStream,
             ServerCallContext context) 
         {
+            System.Console.WriteLine(
+                $"Call to {nameof(GetMessages)}() from {context.Host}");
+
             // retrieve all messages from server
             var repository = new Repositories.MessageRepository().GetAllMessages();
             
@@ -40,6 +43,10 @@ namespace RpcChat.Server.Rpc {
             SendMessageRequest request, 
             ServerCallContext context) 
         {
+
+            System.Console.WriteLine(
+                $"{context.Host} sent message Name={request.From}; Text={request.Text}");
+
             // first we map the received protobuffer 'model' to the local data 'model'
             var msg = new ChatMessage(request.Text, request.From);
 
