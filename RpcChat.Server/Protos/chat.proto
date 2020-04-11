@@ -1,0 +1,31 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "RpcChat.Server";
+
+package Chat;
+
+service ChatContract{
+	rpc SendMessage (SendMessageRequest) returns (SendMessageResponse);
+	rpc GetMessages (GetMessagesRequest) returns (stream GetMessagesResponse);
+}
+
+// The request message for SendMessage call
+message SendMessageRequest {
+	string from = 1;	// the name of user sending the message
+	string text = 2;	// the content of the message
+}
+
+// The response message for SendMessage call
+message SendMessageResponse{
+}
+
+// The request message for GetMessages call
+message GetMessagesRequest {
+}
+
+// The response message for GetMessages call
+message GetMessagesResponse {
+	string from = 1;	// the name of the user that sent this message
+	string text = 2;	// the content of the message
+	string date = 3;	// date when server received the message
+}

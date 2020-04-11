@@ -1,0 +1,305 @@
+﻿<Window x:Class="RpcChat.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RpcChat.Client"
+        mc:Ignorable="d"
+        Title="RPC Chat - Client" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CustomStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" MinWidth="180" MaxWidth="270" />
+            <ColumnDefinition Width="7*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"  />
+            <RowDefinition Height="24" />
+        </Grid.RowDefinitions>
+
+        <!--Background fillings-->
+        <Rectangle 
+            Fill="#B9C6D9"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            Grid.Row="0"
+            Grid.Column="0"
+            />
+        <Rectangle 
+            Grid.Row="0"
+            Grid.Column="0"
+            Fill="#51596D"
+            />
+        <Rectangle>
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#455167" Offset="0.00" />
+                    <GradientStop Color="#5D687D" Offset="0.20" />
+                    <GradientStop Color="#414757" Offset="0.80" />
+                    <GradientStop Color="#353944" Offset="1.00" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+
+
+            <!--Left Panel content-->
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Background="#333B4C"
+                Foreground="White"
+                FontFamily="Tahoma"
+                FontWeight="SemiBold"
+                FontSize="14"
+                Content="SERVER CONNECTION"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                />
+
+            <!--MULTIPLAYER: I AM CLIENT -->
+            <Grid 
+                Margin="10,0,10,0"
+                Grid.Column="0"
+                Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Server IP address-->
+                <Label Grid.Row="0" Grid.Column="0"
+                    Margin="0 0 0 5"
+                    Padding="0"
+                    VerticalAlignment="Bottom"
+                    Foreground="White"
+                    Content="IP address" 
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    FontFamily="Tahoma"
+                    />
+                <TextBox Grid.Row="1" Grid.Column="0"
+                    x:Name="TextBox_IP"
+                    Margin="0 0 0 10"
+                    VerticalAlignment="Stretch"
+                    FontFamily="Consolas"
+                    FontSize="14"
+                    VerticalContentAlignment="Center"
+                    Text="127.0.0.1"
+                    />
+
+                <!--Port-->
+                <Label Grid.Row="2" Grid.Column="0"
+                    Margin="0 0 0 5"
+                    Padding="0"
+                    VerticalAlignment="Bottom"
+                    Foreground="White"
+                    Content="Port" 
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    FontFamily="Tahoma"
+                    />
+                <TextBox Grid.Row="3" Grid.Column="0"
+                    x:Name="TextBox_Port"
+                    Margin="0 0 0 10"
+                    VerticalAlignment="Stretch"
+                    FontFamily="Consolas"
+                    FontSize="14"
+                    VerticalContentAlignment="Center"
+                    Text="555"
+                    />
+
+                <!--Username-->
+                <Label Grid.Row="4" Grid.Column="0"
+                    Margin="0 0 0 5"
+                    Padding="0"
+                    VerticalAlignment="Bottom"
+                    Foreground="White"
+                    Content="Username" 
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    FontFamily="Tahoma"
+                    />
+                <TextBox Grid.Row="5" Grid.Column="0"
+                    x:Name="TextBox_Username"
+                    Margin="0 0 0 10"
+                    VerticalAlignment="Stretch"
+                    FontFamily="Consolas"
+                    FontSize="14"
+                    VerticalContentAlignment="Center"
+                    Text="Giovani"
+                    />
+
+                <Button Grid.Row="6" Grid.Column="0"
+                    Margin="0 10 0 0"
+                    FontFamily="Tahoma"
+                    FontWeight="SemiBold"
+                    Foreground="Black"
+                    Click="ButtonConnect_Click">
+                    <WrapPanel>
+                        <Label Content="CONNECT" VerticalAlignment="Center" />
+                    </WrapPanel>
+                </Button>
+
+                <Button Grid.Row="7" Grid.Column="0"
+                    Margin="0 10 0 0"
+                    FontFamily="Tahoma"
+                    FontWeight="SemiBold"
+                    Foreground="Black"
+                    Click="ButtonDisconnect_Click">
+                    <WrapPanel>
+                        <Label Content="DISCONNECT" VerticalAlignment="Center" />
+                    </WrapPanel>
+                </Button>
+
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+
+            <!--Top Status Bar-->
+            <Rectangle Grid.Column="0" Grid.Row="0" 
+                Fill="#6A86A0"/>
+            <Grid
+                Grid.Row="0"
+                Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBox
+                    x:Name="TextBox_TopBar"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="10 10 10 10"
+                    Text="gRPC Demonstration Chat"
+                    FontFamily="Tahoma"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    VerticalContentAlignment="Center"
+                    Padding="5 0 5 0"
+                    Background="White"
+                    BorderBrush="#192754"
+                    IsReadOnly="True"
+                    Focusable="False"
+                    />
+
+                <TextBox
+                    x:Name="TextBox_Status"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="10 10 0 10"
+                    Text="OFFLINE"
+                    FontFamily="Tahoma"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    Background="#B04567"
+                    BorderBrush="#192754"
+                    Padding="5 0 5 0"
+                    IsReadOnly="True"
+                    Focusable="False"
+                    />
+
+            </Grid>
+
+            <!--Main Panel-->
+            <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="24" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="70" />
+                </Grid.ColumnDefinitions>
+                <ScrollViewer 
+                    Grid.Row="0" 
+                    Margin="0 0 0 10" 
+                    Grid.ColumnSpan="2">
+                    <TextBox 
+                        x:Name="TextBox_Chat"
+                        FontFamily="Tahoma" FontSize="14">
+                        Waiting for server...
+                    </TextBox>
+                </ScrollViewer>
+                
+                <TextBox Grid.Row="1"
+                         FontFamily="Tahoma"
+                         FontSize="16"
+                         x:Name="TextBox_Input">
+                </TextBox>
+                <Button Grid.Row="1" Grid.Column="1" Margin="5 0 0 0"
+                        Click="Button_Send_Click">
+                    ENVIAR
+                </Button>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1"  Grid.ColumnSpan="2" Background="#575D67">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label FontFamily="Tahoma" FontSize="10" Foreground="White"
+                   VerticalContentAlignment="Center"
+                   TextOptions.TextFormattingMode="Ideal"
+                   TextOptions.TextRenderingMode="ClearType"
+                   Content="UFN CC 2020 - by Giovani Luigi R. Brondani" />
+
+            <Label x:Name="Label_Status" Grid.Column="1"
+                   FontFamily="Tahoma" FontSize="10" Foreground="White"
+                   VerticalContentAlignment="Center"
+                   HorizontalAlignment="Right"
+                   TextOptions.TextFormattingMode="Ideal"
+                   TextOptions.TextRenderingMode="ClearType"
+                   Content="Lag: 0 ms"/>
+
+        </Grid>
+
+    </Grid>
+</Window>
